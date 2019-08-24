@@ -8,8 +8,8 @@ import time
 # Initialize browser
 def init_browser():
         
-        execut_path = {'executable_path': 'C:\Tools\chromedriver.exe'}
-        return Browser('chrome', **execut_path, headless=True)
+    execut_path = {'executable_path': 'C:\Tools\chromedriver.exe'}
+    return Browser('chrome', **execut_path, headless=True)
 
 
 # Create Mission to Mars global dictionary that can be imported into Mongo
@@ -23,7 +23,7 @@ def scrape_mars_news():
         # Initialize browser
         browser = init_browser()
 
-        browser.is_element_present_by_css("div.content_title", wait_time=1)
+       # browser.is_element_present_by_css("div.content_title", wait_time=1)
 
         # Visit Nasa news url through splinter module
         url = 'https://mars.nasa.gov/news/'
@@ -85,9 +85,8 @@ def scrape_mars_image():
 
 def scrape_mars_weather():
     try:
-                # Initialize browser
+        # Initialize browser
         browser = init_browser()
-
         browser.is_element_present_by_css("div", wait_time=1)
 
         # Visit Mars Weather Twitter through splinter module
@@ -175,16 +174,13 @@ def scrape_mars_hemispheres():
 # Mars Facts
 def scrape_mars_facts():
     try:
-        mars_facts = pd.DataFrame()
-        browser = init_browser()
-        #mars_facts = {}
-        facts_url = "https://space-facts.com/mars/"
-        browser.visit(facts_url)
-        mars_facts = pd.read_html(facts_url)[0]
-        mars_facts.rename(columns = {0:"Description",1:"Value"}, inplace = True)
-        mars_facts.set_index("Description",inplace = True)
-        facts_data=mars_facts.to_html()
-        mars_info['facts of mars'] = facts_data
-        print(facts_data) 
+
+        facts_url = 'http://space-facts.com/mars/'
+        table = pd.read_html(facts_url)
+        df = table[1]
+        df.columns = ['Index', 'Measurement']
+
+        df.to_html("mars_facts")
+        mars_info['mars_facts'] = mars_facts
     finally:
-        return mars_info
+        return(mars_info)    

@@ -4,10 +4,6 @@ from flask_pymongo import PyMongo
 import scrape_mars
 import os
 
-
-# Hidden authetication file
-#import config 
-
 # Create an instance of Flask app
 app = Flask(__name__)
 # Use flask_pymongo to set up mongo connection locall
