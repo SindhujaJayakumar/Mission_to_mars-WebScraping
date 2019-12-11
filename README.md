@@ -30,7 +30,6 @@ news_p = "Preparation of NASA's next spacecraft to Mars, InSight, has ramped up 
 
 * Make sure to find the image url to the full size `.jpg` image.
 
-* Make sure to save a complete url string for this image.
 
 ```python
 # Example:
